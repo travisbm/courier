@@ -4,7 +4,7 @@ class CreateMessengers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :user_name
-      t.boolean :active
+      t.boolean :active, default: false
       t.string :transit_type
       t.string :location
       t.string :phone

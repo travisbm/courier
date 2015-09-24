@@ -5,8 +5,8 @@ class CreateJobs < ActiveRecord::Migration
       t.string :location
       t.string :job_description
       t.string :phone
-      t.user :belongs_to
-      t.messenger :belongs_to
+      t.user :belongs_to, index: true, foreign_key: true
+      t.messenger :belongs_to, index: true, foreign_key: true
 
       t.timestamps null: false
     end
