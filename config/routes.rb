@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'messengers/index'
+
+  get 'messengers/show'
+
+  get 'messengers/new'
+
+  get 'messengers/create'
+
+  get 'messengers/update'
+
+  get 'messengers/destroy'
+
   get 'users/index'
 
   get 'users/show'
