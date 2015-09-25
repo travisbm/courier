@@ -20,7 +20,7 @@
       city: Faker::Address.state,
       state: Faker::Address.state,
       zip: Faker::Address.zip,
-      user_id: user.user.id
+      user_id: user.id
       })
 
   [1, 2, 3].sample.times do
@@ -37,8 +37,7 @@
       street_name: Faker::Address.street_name,
       city: Faker::Address.state,
       state: Faker::Address.state,
-      zip: Faker::Address.zip,
-      job_id: job.job_id
+      zip: Faker::Address.zip
       })
   end
   user.save!
