@@ -13,6 +13,14 @@
     business_name: Faker::Company.name,
     location: ['North', 'East', 'South', 'West', 'Central'].sample,
     phone: Faker::PhoneNumber.phone_number
+
+    # user.addresses.build({
+    #   street_name: Faker::Address.street_name
+    #   city: Faker::Address.state
+    #   state: Faker::Address.state
+    #   zip: Faker::Address.zip
+    #   user_id: user.user.id
+    #   })
   })
   [1, 2, 3].sample.times do
     user.jobs.build({
@@ -20,8 +28,15 @@
       location: user.location,
       job_description: ['letter', 'parcel'].sample,
       phone: user.phone
-    })
 
+      # Address.new({
+      #   street_name: Faker::Address.street_name
+      #   city: Faker::Address.state
+      #   state: Faker::Address.state
+      #   zip: Faker::Address.zip
+      #   job_id: job.job_id
+      #   })
+    })
   end
   user.save!
 end
