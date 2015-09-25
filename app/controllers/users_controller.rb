@@ -15,9 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def new
-  end
-
   def create
     user = User.new(
       first_name: params[:first_name],

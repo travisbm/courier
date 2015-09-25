@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
 
+  def handle_options_request
+    head(:ok) if request.request_method == "OPTIONS"
+  end
+
   def not_found
    render json: { message: 'Requested route not found' }, status: 404
   end
