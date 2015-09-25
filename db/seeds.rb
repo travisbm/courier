@@ -41,4 +41,14 @@
       })
   end
   user.save!
+
+  messenger = Messenger.new({
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    user_name: Faker::Internet.user_name,
+    transit_type: ['bike', 'car', 'truck'].sample,
+    location: ['North', 'East', 'South', 'West', 'Central'].sample,
+    phone: Faker::PhoneNumber.phone_number
+  })
+  messenger.save!
 end
