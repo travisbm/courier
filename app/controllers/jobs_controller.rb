@@ -2,6 +2,7 @@ class JobsController < ApplicationController
   before_filter :cors_preflight_check
 
   def cors_preflight_check
+    logger.debug "cors is running"
     if request.method == 'OPTIONS'
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
