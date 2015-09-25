@@ -10,6 +10,7 @@ class MessengersController < ApplicationController
       render json: messenger.to_json, status: 200
     else
       render json: { err_message: "Record not found." }, status: 404
+    end
   end
 
   def new
