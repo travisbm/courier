@@ -18,7 +18,7 @@
     user.jobs.build({
       business_name: user.business_name,
       location: user.location,
-      job_description: ['letter', 'parcel'],
+      job_description: ['letter', 'parcel'].sample,
       phone: user.phone
     })
 

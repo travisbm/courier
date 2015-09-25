@@ -1,7 +1,12 @@
 class JobsController < ApplicationController
   def index
-    jobs = User.find(params[:user_id]).jobs
-    render json: jobs.to_json
+    if params[:user_id]
+      jobs = User.find(params[:user_id]).jobs
+      render json: jobs.to_json
+    else
+      jobs = Job.all
+      render json: jobs.to_json
+    end
   end
 
   def show
