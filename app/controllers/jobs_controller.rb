@@ -14,10 +14,12 @@ class JobsController < ApplicationController
   end
 
   def show
-  end
-
-  def new
-    @job = Job.new
+    if Job.exists?(params[:id])
+      job = Job.find(params[:id])
+      render json: job.to_json(:include => :addresses), status: 200
+    else
+      render json: { err_message: "Record not found." }, status: 404
+    end
   end
 
   def create
@@ -26,6 +28,13 @@ class JobsController < ApplicationController
       location: params[:location],
       job_description: params[:job_description],
       phone: params[:phone])
+
+    job.addresses.build({
+      street_name: params[:street_name],
+      city:        params[:city],
+      state:       params[:state],
+      zip:         params[:zip]
+      })
 
     if job.save!
       render json: job.to_json, status: 200
@@ -38,5 +47,12 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    if Job.exists?(params[:id])
+      job = Job.find(params[:id])
+      job.destroy
+      render json: { message: "Job deleted from database."}, status: 200
+    else
+      render json: { err_message: "Record not found." }, status: 404
+    end
   end
 end
