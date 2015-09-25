@@ -28,7 +28,7 @@ class JobsController < ApplicationController
       phone: params[:phone])
 
     if job.save!
-      render json: user.to_json, status: 200
+      render json: job.to_json, status: 200
     else
       render json: { err_message: "Record already exists." }, status: 404
     end
