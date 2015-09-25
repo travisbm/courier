@@ -10,7 +10,7 @@ class JobsController < ApplicationController
       jobs = Job.all
       render json: jobs.to_json, status: 200
     end
-    render json: { err_message: "Record not found." }, status: 404
+    #render json: { err_message: "Record not found." }, status: 404
   end
 
   def show
@@ -21,10 +21,10 @@ class JobsController < ApplicationController
   end
 
   def create
-    job = Job.create(
+    job = Job.new(
       business_name: params[:business_name],
       location: params[:location],
-      job_description: params[:job_description]),
+      job_description: params[:job_description],
       phone: params[:phone])
 
     if job.save!
