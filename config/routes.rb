@@ -12,8 +12,6 @@ Rails.application.routes.draw do
     resources :addresses
   end
 
-
-
   root 'jobs#index'
 
 end
