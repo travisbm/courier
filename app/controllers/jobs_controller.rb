@@ -1,17 +1,27 @@
 class JobsController < ApplicationController
   def index
     if params[:user_id]
-      jobs = User.find(params[:user_id]).jobs
-      render json: jobs.to_json, status: 200
+      if !Job.exists?(params[:user_id])
+        render json: { err_message: "User record not found." }, status: 404
+      else
+        jobs = Job.where(user_id: params[:user_id])
+        render json: jobs.to_json(:include => :addresses), status: 200
+      end
     elsif params[:messenger_id]
-      jobs = Messenger.find(params[:messenger_id]).jobs
-      render json: jobs.to_json, status:200
+      if !Job.exists?(params[:messenger_id])
+        render json: { err_message: "Messenger record not found." }, status: 404
+      else
+        jobs = Job.where(messenger: params[:messenger_id])
+        render json: jobs.to_json(:include => :addresses), status:200
+      end
     else
-      jobs = Job.all
-      business_address = Address.where(user_id: params)
-      render json: jobs.to_json(:include => :addresses), status: 200
+      if Job.count.nil?
+        render json: { err_message: "No Jobs in queue." }, status: 404
+      else
+        jobs = Job.all
+        render json: jobs.to_json(:include => :addresses), status: 200
+      end
     end
-    #render json: { err_message: "Record not found." }, status: 404
   end
 
   def show
@@ -40,7 +50,7 @@ class JobsController < ApplicationController
     if job.save!
       render json: job.to_json, status: 200
     else
-      render json: { err_message: "Record already exists." }, status: 404
+      render json: { err_message: "Job record already exists." }, status: 404
     end
   end
 
@@ -53,7 +63,7 @@ class JobsController < ApplicationController
       job.destroy
       render json: { message: "Job deleted from database."}, status: 200
     else
-      render json: { err_message: "Record not found." }, status: 404
+      render json: { err_message: "Job record not found." }, status: 404
     end
   end
 end
