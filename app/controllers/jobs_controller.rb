@@ -8,7 +8,8 @@ class JobsController < ApplicationController
       render json: jobs.to_json, status:200
     else
       jobs = Job.all
-      render json: jobs.to_json, status: 200
+      business_address = Address.where(user_id: params)
+      render json: jobs.to_json(:include => :addresses), status: 200
     end
     #render json: { err_message: "Record not found." }, status: 404
   end

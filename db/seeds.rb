@@ -20,7 +20,7 @@
       city:        Faker::Address.state,
       state:       Faker::Address.state,
       zip:         Faker::Address.zip,
-      user_id:     user.id
+      # user_id:     user.id
       })
 
   [1, 2, 3].sample.times do
