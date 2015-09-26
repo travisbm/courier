@@ -1,13 +1,14 @@
 class AddressesController < ApplicationController
   def index
     if params[:user_id]
-      address = User.find(params[:user_id]).addresses
+      address = Address.where(user_id: params[:user_id])
       render json: address.to_json, status: 200
     elsif params[:job_id]
-      address = Job.find(params[:job_id]).addresses
-      render json: address.to_json, status:200
+      address = Address.where(job_id: params[:job_id])
+      render json: address.to_json, status: 200
+    else
+      render json: { err_message: "Record not found." }, status: 404
     end
-    render json: { err_message: "Record not found." }, status: 404
   end
 
   def show
