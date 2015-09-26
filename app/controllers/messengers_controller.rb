@@ -1,10 +1,12 @@
 class MessengersController < ApplicationController
+
   def index
     if Messenger.count.nil?
       render json: { err_message: "No Messengers in queue." }, status: 404
     else
       messengers = Messenger.all
       render json: messengers.to_json, status: 200
+    end
   end
 
   def show
@@ -44,4 +46,5 @@ class MessengersController < ApplicationController
       render json: { err_message: "Record not found." }, status: 404
     end
   end
+
 end
