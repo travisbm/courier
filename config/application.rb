@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Courier
   class Application < Rails::Application
+
     config.action_dispatch.default_headers = {
       'Access-Control-Allow-Origin'   => '*',
       'Access-Control-Allow-Methods'  => 'POST, PUT, DELETE, GET, OPTIONS',
@@ -15,6 +16,7 @@ module Courier
       'Access-Control-Allow-Headers'  => 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     }
     config.active_record.raise_in_transactional_callbacks = true
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

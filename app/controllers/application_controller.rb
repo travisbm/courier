@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
       headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
       headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
       headers['Access-Control-Max-Age'] = '1728000'
+      headers['Content-Type'] = ''
 
-      render :text => '', :content_type => 'text/plain'
+     head :ok, :content_type => '',
+ :content_disposition => nil,
+ :x_sendfile => nil,
+ :content_transfer_encoding => 'binary'
     end
   end
 
@@ -22,12 +26,12 @@ class ApplicationController < ActionController::Base
     headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
     headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
     headers['Access-Control-Max-Age'] = '1728000'
+    headers['Content-Type'] = ''
 
-    render :text => '', :content_type => 'text/plain'
-  end
-
-  def handle_options_request
-    head(:ok) if request.request_method == "OPTIONS"
+head :ok, :content_type => '',
+ :content_disposition => nil,
+ :x_sendfile => nil,
+ :content_transfer_encoding => 'binary'
   end
 
   def not_found
