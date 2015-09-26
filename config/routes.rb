@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  match "/*all" => "application#cors_options", via: :options
-
   resources :users do
     resources :jobs, :addresses
   end
