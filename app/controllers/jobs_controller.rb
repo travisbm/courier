@@ -44,14 +44,14 @@ class JobsController < ApplicationController
       phone:           params[:phone]
       })
 
-    user.jobs.last do |job|
-      job.addresses.build({
-        street_name: params[:street_name],
-        city:        params[:city],
-        state:       params[:state],
-        zip:         params[:zip]
-        })
-    end
+    job = Job.find_by! business_name: params[:business_name]
+
+    job.addresses.build({
+      street_name: params[:street_name],
+      city:        params[:city],
+      state:       params[:state],
+      zip:         params[:zip]
+      })
 
     if user.save!
       render json: user.to_json(:include => { :jobs => {
