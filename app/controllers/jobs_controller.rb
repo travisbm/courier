@@ -34,21 +34,29 @@ class JobsController < ApplicationController
   end
 
   def create
-    job = Job.new(
-      business_name: params[:business_name],
-      location: params[:location],
-      job_description: params[:job_description],
-      phone: params[:phone])
 
-    job.addresses.build({
-      street_name: params[:street_name],
-      city:        params[:city],
-      state:       params[:state],
-      zip:         params[:zip]
+    user = User.find_by user_name: params[:user_name]
+
+    user.jobs.build({
+      business_name:   params[:business_name],
+      location:        params[:location],
+      job_description: params[:job_description],
+      phone:           params[:phone]
       })
 
-    if job.save!
-      render json: job.to_json(:methods => [:user], :include => :address), status: 200
+    user.jobs.last do |job|
+      job.addresses.build({
+        street_name: params[:street_name],
+        city:        params[:city],
+        state:       params[:state],
+        zip:         params[:zip]
+        })
+    end
+
+    if user.save!
+      render json: user.to_json(:include => { :jobs => {
+                                                :include => :addresses }
+      }), status: 200
     else
       render json: { err_message: "Job record already exists." }, status: 404
     end
