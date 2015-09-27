@@ -20,12 +20,12 @@ class MessengersController < ApplicationController
 
   def create
     messenger = Messenger.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      user_name: params[:user_name],
+      first_name:   params[:first_name],
+      last_name:    params[:last_name],
+      user_name:    params[:user_name],
       transit_type: params[:transit_type],
-      location: params[:location],
-      phone: params[:phone])
+      location:     params[:location],
+      phone:        params[:phone])
 
     if messenger.save!
       render json: messenger.to_json, status: 200

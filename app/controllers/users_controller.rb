@@ -21,12 +21,12 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      user_name: params[:user_name],
+      first_name:    params[:first_name],
+      last_name:     params[:last_name],
+      user_name:     params[:user_name],
       business_name: params[:business_name],
-      location: params[:location],
-      phone: params[:phone])
+      location:      params[:location],
+      phone:         params[:phone])
 
     user.addresses.build({
       street_name: params[:street_name],
