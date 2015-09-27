@@ -28,7 +28,7 @@
       location:        user.location,
       job_description: ['letter', 'parcel'].sample,
       phone:           user.phone,
-      status: "created"
+      status: 'created'
     })
   end
 
