@@ -27,7 +27,7 @@
       business_name:   user.business_name,
       location:        user.location,
       job_description: ['letter', 'parcel'].sample,
-      phone:           user.phone
+      phone:           user.phone,
       status: "created"
     })
   end
