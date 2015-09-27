@@ -1,5 +1,5 @@
 class AddColumnJobsTable < ActiveRecord::Migration
   def change
-    add_column(:users, :status, string)
+    add_column(:jobs, :status, string)
   end
 end
