@@ -8,7 +8,7 @@ README describes how to interact with the Dispatch Rails app database.
 
 ***
 
-![Alt Image Text](https://www.dropbox.com/s/si5va5ho1i3a02l/dispatchdiagram.png?dl=0 "Optional Title")
+![Alt Image Text](https://dl.dropbox.com/s/si5va5ho1i3a02l/dispatchdiagram.png?dl=0)
 
 ***
 
