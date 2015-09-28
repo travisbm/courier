@@ -41,7 +41,8 @@ class JobsController < ApplicationController
       business_name:   params[:business_name],
       location:        params[:location],
       job_description: params[:job_description],
-      phone:           params[:phone]
+      phone:           params[:phone],
+      status:          params[:status]
       })
 
     job = Job.last
