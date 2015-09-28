@@ -44,7 +44,7 @@ class JobsController < ApplicationController
       phone:           params[:phone]
       })
 
-    job = Job.find_by! business_name: params[:business_name]
+    job = Job.last
 
     job.addresses.build({
       street_name: params[:street_name],
@@ -52,9 +52,10 @@ class JobsController < ApplicationController
       state:       params[:state],
       zip:         params[:zip]
       })
+    job.save!
 
     if user.save!
-      render json: user.to_json(:include => { :jobs => {
+      render json: user.to_json(:include => :addresses, :include => { :jobs => {
                                                 :include => :addresses }
       }), status: 200
     else
@@ -63,6 +64,13 @@ class JobsController < ApplicationController
   end
 
   def update
+    if Job.exists?(params[:id])
+      job = Job.find(params[:id])
+      job.status = params[:status]
+      render json: job.to_json, status: 200
+    else
+      render json: { err_message: "User record not found." }, status: 404
+    end
   end
 
   def destroy
