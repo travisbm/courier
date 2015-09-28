@@ -55,7 +55,7 @@ class JobsController < ApplicationController
     job.save!
 
     if user.save!
-      render json: user.to_json(:include => :addresses, :include => { :jobs => {
+      render json: user.to_json( :include => { :jobs => {
                                                 :include => :addresses }
       }), status: 200
     else
