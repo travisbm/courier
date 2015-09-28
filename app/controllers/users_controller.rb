@@ -12,11 +12,9 @@ class UsersController < ApplicationController
     if User.exists?(params[:id])
       user = User.find(params[:id])
 
-      render json: user.to_json( { :include => :addresses }, :include => { :jobs => { :include => :addresses } }), status: 200
-
-      # render json: user.to_json(:include => { :jobs => {
-      #                                           :include => :addresses }
-      # }), status: 200
+      render json: user.to_json(:include => { :jobs => {
+                                                :include => :addresses }
+      }), status: 200
     else
       render json: { err_message: "User record not found." }, status: 404
     end

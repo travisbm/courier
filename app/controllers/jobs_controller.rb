@@ -45,7 +45,7 @@ class JobsController < ApplicationController
       status:          params[:status]
       })
 
-    job = Job.last
+    job = user.jobs.last
 
     job.addresses.build({
       street_name: params[:street_name],
@@ -56,9 +56,10 @@ class JobsController < ApplicationController
     job.save!
 
     if user.save!
-      render json: user.to_json( :include => { :jobs => {
-                                                :include => :addresses }
-      }), status: 200
+      assoc_1 = {:addresses => params}
+      assoc_2 = {:jobs => params}
+
+      render json: user.as_json(:include => {:addresses => assoc_1, :jobs => assoc_2, :jobs => {:include => :addresses}}), status: 200
     else
       render json: { err_message: "Job record already exists." }, status: 404
     end
